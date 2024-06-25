@@ -2,6 +2,7 @@ from src.transcribe.diarize import diarize_audio
 from src.transcribe.transcribe import transcribe_audiofiles
 import sys
 import shutil
+import os
 
 if __name__ == "__main__":
     audio_path, model_path = sys.argv[1], sys.argv[2]
@@ -13,15 +14,11 @@ if __name__ == "__main__":
 
     # save the conversation in a file. Please rename the file to the name of the audio file
 
-    with open("{audio_path}.txt", "w") as f:
+    # creta a folder to store the text files
+    if not os.path.exists("text_files"):
+        os.makedirs("text_files")
+
+    text_file = audio_path.split("/")[-1].split(".")[0]
+
+    with open(f"text_files/{text_file}.txt", "w") as f:
         f.write(conv_str)
-
-
-
-
-    # # delete the diarized files
-    # shutil.rmtree("dia_output")
-
-    # # save the summary
-    # with open("summary.txt", "w") as f:
-    #     f.write(summary)
