@@ -78,7 +78,7 @@ def transcribe_audiofiles(
         model=transcription_model_path,
         tokenizer=transcription_model_path,
         chunk_length_s=CHUNK_LENGTH_S,
-        device='cpu',
+        device=0,
         batch_size=BATCH_SIZE,
     )
     pipe.model.config.forced_decoder_ids = pipe.tokenizer.get_decoder_prompt_ids(language="bn", task="transcribe")  # type: ignore

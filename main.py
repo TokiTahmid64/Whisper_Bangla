@@ -9,7 +9,19 @@ if __name__ == "__main__":
     diarized_files = diarize_audio(audio_path)
     conversation = transcribe_audiofiles(diarized_files, model_path)
     conv_str = "\n".join([f"{name}: {text}" for name, text in conversation])
-    # print the conversation to a file. Rename the file with the same name as the audio file
-    with open(f"{audio_path}.txt", "w") as f:
+
+
+    # save the conversation in a file. Please rename the file to the name of the audio file
+
+    with open("{audio_path}.txt", "w") as f:
         f.write(conv_str)
 
+
+
+
+    # # delete the diarized files
+    # shutil.rmtree("dia_output")
+
+    # # save the summary
+    # with open("summary.txt", "w") as f:
+    #     f.write(summary)
